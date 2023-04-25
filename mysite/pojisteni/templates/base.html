@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    {% load static %}
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" type = "text/css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        input {max-width: 12em};
+    </style>
+    <title>Evidence pojištění</title>
+</head>
+<body>
+    <nav>
+        <div class="flex_box">
+            PojištěníApp
+            <div class="nav_item"><a href="{% url 'pojistenec_index' %}">Index</a></div>
+            {% if user.is_authenticated %}<div class="nav_item"><a href="{% url 'logout' %}">Logout</a></div>{% endif %}
+            {% if user.is_admin %}<div class="nav_item"><a href="{% url 'novy_pojistenec' %}">Přidat pojištěnce</a></div>{% endif %}
+            {% if user.is_admin %}<div class="nav_item"><a href="{% url 'nove_pojisteni' %}">Přidat pojištění</a></div>{% endif %}
+            {% if user.is_authenticated %}<div class="nav_item"><a href="{% url 'pojisteni_index' %}">Přehled pojištění</a></div>{% endif %}
+            {% if not user.is_authenticated %}<div class="nav_item"><a href="{% url 'login' %}">Přihlásit</a></div>{% endif %}
+            {% if not user.is_authenticated %}<div class="nav_item"><a href="{% url 'registrace' %}">Registrovat</a></div>{% endif %}
+        </div>
+    </nav>
+    <div class="content">
+    {% block content %}
+
+    {% endblock %}
+    </div>
+    <footer>
+        Footer
+    </footer>
+</body>
+<div class="text-center">{{request.user.email}}</div>
+{% if messages %}
+    {% for message in messages %}
+    {% if message.tags == "error" %}
+    <strong><span style="color: #ff564f">Error: {{message}}</span></strong>
+    {% elif message.tags == "info" %}
+    <strong><span style="color: #73E460">Info: {{message}}</span> </strong>
+    {% else %}
+    <strong><span style="color: #73E460">Zpráva: {{message}}</span></strong>
+    {% endif %}
+    {% endfor %}
+{% endif %}
+</html>

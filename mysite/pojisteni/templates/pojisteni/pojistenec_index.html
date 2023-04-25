@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+    {% for pojistenec in pojisteni %}
+        <a href="{% url 'pojistenec_detail' pojistenec.id %}"> Jméno: {{pojistenec.jmeno}} {{pojistenec.prijmeni}} <br> </a>
+    {% endfor %}
+{% endblock %}

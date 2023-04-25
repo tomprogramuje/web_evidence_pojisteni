@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1> {{pojisteni.typ}} {{pojisteni.predmet}} <span class="glyphicon glyphicon-erase"></span></h1>
+    <small> {{pojisteni.castka}} </small>
+    <h4> {{pojisteni.platnost_od}} {{pojisteni.platnost_do}} </h4>
+    <hr>
+        <form method="POST">
+            {% csrf_token %}
+
+            {% if user.is_admin %}<button name="edit">Upravit pojištění</button><button name="delete">Smazat pojištění</button>{% endif %}
+        </form>
+{% endblock %}

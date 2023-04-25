@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1> {{pojistenec.jmeno}} {{pojistenec.prijmeni}} <span class="glyphicon glyphicon-erase"></span></h1>
+    <small> {{pojistenec.mesto}} </small>
+    <h4> {{pojistenec.ulice}} {{pojsitenec.psc}} </h4>
+    <h5> {{pojistenec.email}} {{pojistenec.telefon}} </h5>
+    Pojištění:<br>
+        {% if pojistenec.jaka_pojisteni.all.0 %}
+            {% for pojisteni in pojistenec.jaka_pojisteni.all %}
+                <a href="{% url 'pojisteni_detail' pojisteni.id %}">{{pojisteni.typ}} <br> </a>
+            {% endfor %}
+        {% else %}
+            <span style="color: red;">Tento pojištěnec nemá žádná pojištění.</span>
+        {% endif %}
+    <hr>
+        <form method="POST">
+            {% csrf_token %}
+            {% if user.is_admin %}<button name="create">Přidej pojištění</button><button name="edit">Upravit pojištěnce</button><button name="delete">Smazat pojištěnce</button>{% endif %}
+        </form>
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+    {% for pojisteni in pojisteni %}
+        <a href="{% url 'pojisteni_detail' pojisteni.id %}"> Pojištění: {{pojisteni.typ}} <br> </a>
+    {% endfor %}
+{% endblock %}

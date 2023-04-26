@@ -128,29 +128,6 @@ class EditPojistenec(LoginRequiredMixin, generic.edit.CreateView):
         return render(request, self.template_name, {"form": form})
 
 
-class PridejPojisteni(LoginRequiredMixin, generic.edit.CreateView):
-
-    form_class = PojisteniForm
-    template_name = "pojisteni/pridej_pojisteni.html"
-
-    def get(self, request):
-        if not request.user.is_admin:
-            messages.info(request, "Nemáš práva pro přidání pojištění.")
-            return redirect(reverse("pojistenec_index"))
-        form = self.form_class(None)
-        return render(request, self.template_name, {"form": form})
-
-    def post(self, request):
-        if not request.user.is_admin:
-            messages.info(request, "Nemáš práva pro přidání pojištění.")
-            return redirect(reverse("pojistenec_index"))
-        form = self.form_class(request.POST)
-        if form.is_valid():
-            form.save(commit=True)
-            return redirect("pojistenec_index")
-        return render(request, self.template_name, {"form": form})
-
-
 class VytvorPojisteni(LoginRequiredMixin, generic.edit.CreateView):
 
     form_class = PojisteniForm
@@ -261,3 +238,9 @@ def logout_user(request):
     else:
         messages.info(request, "Nemůžeš se odhlášit, pokud nejsi přihlášený.")
     return redirect(reverse("login"))
+
+
+class Home(generic.TemplateView):
+
+    template_name = "pojisteni/home.html"
+    context_object_name = "home"

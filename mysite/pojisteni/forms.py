@@ -16,6 +16,7 @@ class PojisteniForm(forms.ModelForm):
         model = Pojisteni
         fields = ["typ", "castka", "predmet", "platnost_od", "platnost_do"]
 
+
 class UzivatelForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput)
 

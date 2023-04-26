@@ -19,7 +19,7 @@
     <nav>
         <div class="flex_box">
             PojištěníApp
-            <div class="nav_item"><a href="{% url 'pojistenec_index' %}">Index</a></div>
+            {% if user.is_authenticated %}<div class="nav_item"><a href="{% url 'pojistenec_index' %}">Index</a></div>{% endif %}
             {% if user.is_authenticated %}<div class="nav_item"><a href="{% url 'logout' %}">Logout</a></div>{% endif %}
             {% if user.is_admin %}<div class="nav_item"><a href="{% url 'novy_pojistenec' %}">Přidat pojištěnce</a></div>{% endif %}
             {% if user.is_admin %}<div class="nav_item"><a href="{% url 'nove_pojisteni' %}">Přidat pojištění</a></div>{% endif %}

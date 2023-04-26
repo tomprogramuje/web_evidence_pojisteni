@@ -33,16 +33,12 @@ class Pojistenec(models.Model):
 
     class Meta:
         verbose_name = "Pojištěnec"
-        verbose_name_plural = "Pojištěnci"
-
-    def __init__(self, *args, **kwargs):
-        super(Pojistenec, self).__init__(*args, **kwargs)
 
     def __str__(self):
         insurance = [i.typ for i in self.jaka_pojisteni.all()]
         return "Jméno: {0} | Příjmení: {1} | Ulice a č. p.: {2} | Město: {3} | PSČ: {4} | E-mail: {5} | Telefon {6}" \
-               "| Pojištění {7}".\
-            format(self.jmeno, self.prijmeni, self.ulice, self.mesto, self.psc, self.email, self.telefon, insurance)
+               "| Pojištění {7}".format(self.jmeno, self.prijmeni, self.ulice, self.mesto, self.psc, self.email,
+                                        self.telefon, insurance)
 
 
 class UzivatelManager(BaseUserManager):

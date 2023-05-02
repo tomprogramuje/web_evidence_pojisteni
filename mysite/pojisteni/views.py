@@ -237,7 +237,7 @@ def logout_user(request):
         logout(request)
     else:
         messages.info(request, "Nemůžeš se odhlášit, pokud nejsi přihlášený.")
-    return redirect(reverse("login"))
+    return redirect(reverse("home"))
 
 
 class Home(generic.TemplateView):

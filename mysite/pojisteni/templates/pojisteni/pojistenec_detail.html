@@ -15,6 +15,6 @@
     <hr>
         <form method="POST">
             {% csrf_token %}
-            {% if user.is_admin %}<button name="create">Přidej pojištění</button><button name="edit">Upravit pojištěnce</button><button name="delete">Smazat pojištěnce</button>{% endif %}
+            {% if user.is_admin %}<button name="edit">Upravit pojištěnce</button><button name="delete">Smazat pojištěnce</button>{% endif %}
         </form>
 {% endblock %}
